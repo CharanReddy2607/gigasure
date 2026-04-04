@@ -1,0 +1,25 @@
+# GigaSure Global Ignore
+# Node / Frontend
+node_modules/
+dist/
+build/
+.env
+.env.local
+
+# Java / Backend
+target/
+*.class
+.mvn/wrapper/maven-wrapper.jar
+.idea/
+.vscode/
+*.iml
+*.log
+
+# Database
+data/
+*.mv.db
+*.trace.db
+
+# OS
+.DS_Store
+Thumbs.db

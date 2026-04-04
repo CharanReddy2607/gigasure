@@ -1,0 +1,33 @@
+package com.gigasure.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "workers")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Worker {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String city;
+    private String platform;
+
+    private BigDecimal dailyIncome;
+    private Double currentRiskScore;
+    private String contactEmail;
+
+    private Double currentLat;
+    private Double currentLng;
+    private java.time.LocalDateTime lastLocationUpdate;
+}
