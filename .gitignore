@@ -5,6 +5,15 @@ dist/
 build/
 .env
 .env.local
+.cache/
+.parcel-cache
+.eslintcache
+.stylelintcache
+.node_repl_history
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+vite.config.js.timestamp-*
 
 # Java / Backend
 target/
