@@ -43,7 +43,7 @@ public class FraudDetectionServiceTest {
         // No recent claims
         Mockito.when(claimRepository.findByPolicyWorkerId(1L)).thenReturn(List.of());
 
-        boolean isSuspicious = fraudDetectionService.evaluateFraudRisk(claim, worker);
+        fraudDetectionService.analyzeClaim(claim, worker);
         assertFalse(isSuspicious);
 
         // Verify no log is created
@@ -61,7 +61,7 @@ public class FraudDetectionServiceTest {
 
         Mockito.when(claimRepository.findByPolicyWorkerId(1L)).thenReturn(List.of());
 
-        boolean isSuspicious = fraudDetectionService.evaluateFraudRisk(claim, worker);
+        fraudDetectionService.analyzeClaim(claim, worker);
         assertTrue(isSuspicious);
 
         ArgumentCaptor<FraudLog> captor = ArgumentCaptor.forClass(FraudLog.class);
