@@ -20,7 +20,9 @@ public class FraudDetectionService {
     private final ClaimRepository claimRepository;
     private final FraudLogRepository fraudLogRepository;
     private final RestTemplate restTemplate = new RestTemplate();
-    private static final String ML_SERVICE_URL = "http://localhost:5000/predictFraud";
+    
+    @org.springframework.beans.factory.annotation.Value("${ml.service.url:http://localhost:5000/predictFraud}")
+    private String mlServiceUrl;
 
     public FraudDetectionService(ClaimRepository claimRepository, FraudLogRepository fraudLogRepository) {
         this.claimRepository = claimRepository;
@@ -92,7 +94,7 @@ public class FraudDetectionService {
                 "workerRiskScore", risk
             );
             
-            Map<String, Object> response = restTemplate.postForObject(ML_SERVICE_URL, payload, Map.class);
+            Map<String, Object> response = restTemplate.postForObject(mlServiceUrl, payload, Map.class);
             if (response != null && response.containsKey("fraudProbability")) {
                 double prob = (double) response.get("fraudProbability");
                 if (prob > 0.7) reasons.add(String.format("ML: High prediction confidence (%.1f%%)", prob * 100));

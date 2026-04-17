@@ -1,0 +1,11 @@
+﻿- [/] Backend Refactor
+    - [ ] application.properties (Env Variables)
+    - [ ] FraudDetectionService (@Value injection)
+    - [ ] WebConfig (CORS)
+- [ ] ML Service Refactor
+    - [ ] Port Handling
+- [ ] Frontend Refactor
+    - [ ] VITE_API_URL integration
+- [ ] Cloud Readiness
+    - [ ] Dockerfiles for Render
+    - [ ] PostgreSQL Database Schema
