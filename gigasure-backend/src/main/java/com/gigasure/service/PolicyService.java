@@ -28,7 +28,7 @@ public class PolicyService {
     }
 
     public List<Policy> getPoliciesByWorker(Long workerId) {
-        return policyRepository.findByWorkerId(workerId);
+        return policyRepository.findByWorker_Id(workerId);
     }
 
     public List<Policy> getAllPolicies() {

@@ -64,6 +64,6 @@ public class ClaimService {
     }
 
     public List<Claim> getAllClaims() { return claimRepository.findAll(); }
-    public List<Claim> getClaimsByWorker(Long workerId) { return claimRepository.findByPolicyWorkerId(workerId); }
+    public List<Claim> getClaimsByWorker(Long workerId) { return claimRepository.findByPolicy_Worker_Id(workerId); }
     public void deleteClaim(Long id) { claimRepository.deleteById(id); }
 }

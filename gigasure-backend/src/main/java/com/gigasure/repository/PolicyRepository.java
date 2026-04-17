@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PolicyRepository extends JpaRepository<Policy, Long> {
-    List<Policy> findByWorkerId(Long workerId);
+    List<Policy> findByWorker_Id(Long workerId);
 }

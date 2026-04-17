@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ClaimRepository extends JpaRepository<Claim, Long> {
     List<Claim> findByPolicyId(Long policyId);
-    List<Claim> findByPolicyWorkerId(Long workerId);
+    List<Claim> findByPolicy_Worker_Id(Long workerId);
 }

@@ -19,6 +19,6 @@ public class NotificationController {
 
     @GetMapping("/worker/{workerId}")
     public List<Notification> getWorkerNotifications(@PathVariable Long workerId) {
-        return notificationRepository.findByWorkerId(workerId);
+        return notificationRepository.findByWorker_Id(workerId);
     }
 }
