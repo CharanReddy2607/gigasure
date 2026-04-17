@@ -1,0 +1,32 @@
+services:
+  # 1. ML Intelligence Microservice
+  - type: web
+    name: gigasure-ml-intelligence
+    runtime: docker
+    rootDir: ml
+    plan: free
+    envVars:
+      - key: PORT
+        value: 5000
+
+  # 2. GigaSure Backend
+  - type: web
+    name: gigasure-backend
+    runtime: docker
+    rootDir: gigasure-backend
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://ep-crimson-unit-an2ijgru.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require
+      - key: SPRING_DATASOURCE_USERNAME
+        value: neondb_owner
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: npg_4RAn9UbcKlzd
+      - key: ML_SERVICE_URL
+        fromService:
+          name: gigasure-ml-intelligence
+          type: web
+          property: host
+        suffix: /predictFraud
