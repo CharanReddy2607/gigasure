@@ -124,17 +124,15 @@ Example:
 ```mermaid
 flowchart TD
 
-A[Frontend - React (Vercel)] --> B[Backend - Spring Boot (Render)]
+A[Frontend] --> B[Backend API]
 
-B --> C[ML Service - FastAPI]
-B --> D[(Neon PostgreSQL)]
+B --> C[ML Service]
+B --> D[(Database)]
 
 C --> D
 
-B --> E[Weather API]
-B --> F[AQI API]
+B --> E[External APIs]
 ```
-
 ---
 
 # ☁️ Deployment Architecture  
