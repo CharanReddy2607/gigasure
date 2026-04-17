@@ -1,121 +1,85 @@
-# 🚀 GigaSure
-
-### AI-Powered Parametric Insurance for Gig Delivery Workers
+# 🚀 GigaSure  
+### AI-Powered Parametric Insurance for Gig Delivery Workers  
 
 Protecting gig delivery workers from income loss caused by weather disruptions, pollution, and external events.
 
 ---
 
-# 🌍 DEVTrails 2026 Submission
+# 🌍 DEVTrails 2026 Submission  
 
-**Team:** HackStreet Boys
-**Project:** GigaSure
-**Phase:** Phase 3 – Soar 🚀
-
----
-
-# 🧠 Overview
-
-GigaSure is a **cloud-native, AI-powered parametric insurance platform** designed to protect gig delivery workers from income loss caused by environmental and external disruptions.
-
-Delivery partners in India frequently face sudden income drops (20–30%) due to:
-
-* Heavy rain 🌧️
-* Heatwaves ☀️
-* Air pollution 🌫️
-* Zone shutdowns 🚫
-
-Traditional insurance does not cover **short-term income disruptions**.
-
-👉 GigaSure solves this using:
-
-* AI-based risk modeling
-* Real-time disruption detection
-* Automated parametric payouts
+**Team:** HackStreet Boys  
+**Project:** GigaSure  
+**Phase:** Phase 3 – Soar 🚀  
 
 ---
 
-# ⚡ Key Features
+# 🧠 Overview  
 
-* 🤖 AI-driven risk assessment
-* 📊 Dynamic premium calculation
-* 🌦️ Real-time disruption detection
-* 💸 Automated parametric payouts
-* 🛡️ Fraud detection (anomaly detection)
-* 🗺️ Risk heatmaps
-* 🎯 Smart coverage recommendations
-* 📢 Worker safety alerts
+GigaSure is a **cloud-native, AI-powered parametric insurance platform** that protects gig delivery workers from income loss caused by real-world disruptions.
 
----
+Gig workers often face **20–30% income drops** due to:
+- Heavy rain 🌧️  
+- Heatwaves ☀️  
+- Air pollution 🌫️  
+- Zone shutdowns 🚫  
 
-# 👤 Target Persona
-
-### Food Delivery Worker
-
-| Attribute     | Value      |
-| ------------- | ---------- |
-| Name          | Ravi Kumar |
-| Age           | 26         |
-| Platform      | Swiggy     |
-| City          | Hyderabad  |
-| Vehicle       | Bike       |
-| Daily Income  | ₹900       |
-| Weekly Income | ₹6300      |
+❌ No existing insurance covers short-term income disruption  
+✅ GigaSure solves this using AI + automated payouts  
 
 ---
 
-# ⚠️ Problem Scenario
+# ⚡ Key Features  
 
-Heavy rain reduces delivery activity:
-
-| Metric              | Value   |
-| ------------------- | ------- |
-| Normal Daily Income | ₹900    |
-| Hours Lost          | 5 hours |
-| Income Loss         | ₹450    |
-
-✅ GigaSure automatically compensates this loss.
-
----
-
-# 🧩 Problem Statement
-
-India’s gig workforce lacks financial protection against **short-term environmental disruptions**.
-
-GigaSure introduces:
-
-> **AI-driven parametric insurance with automated claim triggering**
+- 🤖 AI-based risk prediction  
+- 📊 Dynamic premium pricing  
+- 🌦️ Real-time disruption detection  
+- 💸 Automated claim triggering  
+- 🛡️ Fraud detection (Isolation Forest)  
+- 🗺️ Risk heatmaps  
+- 🎯 Smart coverage recommendations  
+- 📢 Worker alerts  
 
 ---
 
-# 🌦️ Disruptions Covered
+# 👤 Target Persona  
 
-| Disruption    | Data Source      | Impact                 |
-| ------------- | ---------------- | ---------------------- |
-| Heavy Rain    | Weather API      | Delivery slowdown      |
-| Heatwave      | Temperature API  | Reduced working hours  |
-| Air Pollution | AQI API          | Unsafe work conditions |
-| Flooding      | Weather alerts   | Delivery suspension    |
-| Zone Closure  | Govt / mock data | Restricted movement    |
+| Attribute | Value |
+|---|---|
+| Name | Ravi Kumar |
+| Age | 26 |
+| Platform | Swiggy |
+| City | Hyderabad |
+| Daily Income | ₹900 |
+| Weekly Income | ₹6300 |
 
 ---
 
-# ⚙️ Parametric Insurance Model
+# ⚠️ Problem Scenario  
 
-### Trigger Example
+| Metric | Value |
+|---|---|
+| Normal Income | ₹900 |
+| Hours Lost | 5 |
+| Loss | ₹450 |
+
+✅ GigaSure automatically compensates this loss  
+
+---
+
+# ⚙️ Parametric Insurance Model  
+
+Trigger:
 
 ```
-Rainfall > 35 mm
-AND
-Delivery activity drop > 50%
+Rainfall > 35 mm AND Delivery drop > 50%
 ```
 
-✔ Automatically triggers claim
-✔ No manual verification
+✔ Automatic claim  
+✔ No manual verification  
 
 ---
 
-# 💸 Payout Calculation
+# 💸 Payout Formula  
 
 ```
 Payout = (Hours Lost / Total Hours) × Daily Income
@@ -129,156 +93,121 @@ Example:
 
 ---
 
-# 💰 Weekly Premium Model
+# 💰 Premium Model  
 
-| Risk Level  | Premium |
-| ----------- | ------- |
-| Low Risk    | ₹25     |
-| Medium Risk | ₹40     |
-| High Risk   | ₹60     |
+| Risk Level | Premium |
+|---|---|
+| Low | ₹25 |
+| Medium | ₹40 |
+| High | ₹60 |
 
-✔ AI dynamically adjusts pricing
-
----
-
-# 🤖 AI / ML Integration
-
-### 1. Risk Prediction
-
-* Models: Random Forest, XGBoost
-* Output: Risk score + premium
-
-### 2. Fraud Detection
-
-* Model: Isolation Forest
-* Detects fake claims, GPS spoofing
-
-### 3. Disruption Prediction
-
-* Predicts probability of future disruptions
-* Forecasts income loss
+✔ AI adjusts pricing dynamically  
 
 ---
 
-# 🏗️ System Architecture (Production)
+# 🤖 AI Architecture  
+
+### Risk Prediction  
+- Models: Random Forest, XGBoost  
+- Output: Risk score + premium  
+
+### Fraud Detection  
+- Model: Isolation Forest  
+
+### Disruption Prediction  
+- Forecasts weather + income loss  
+
+---
+
+# 🏗️ System Architecture  
 
 ```mermaid
 flowchart TD
 
 A[Frontend - React (Vercel)] --> B[Backend - Spring Boot (Render)]
 
-B --> C[ML Service - FastAPI (Render)]
+B --> C[ML Service - FastAPI]
 B --> D[(Neon PostgreSQL)]
 
 C --> D
 
 B --> E[Weather API]
 B --> F[AQI API]
-B --> G[External Data Sources]
 ```
 
 ---
 
-# ☁️ Cloud Deployment Architecture
+# ☁️ Deployment Architecture  
 
-| Layer      | Platform                     |
-| ---------- | ---------------------------- |
-| Frontend   | Vercel                       |
-| Backend    | Render (Docker)              |
-| ML Service | Render (Docker)              |
-| Database   | Neon (Serverless PostgreSQL) |
-| CI/CD      | GitHub Actions               |
-
----
-
-# 🧱 Tech Stack
-
-**Frontend**
-React, Vite, Tailwind CSS
-
-**Backend**
-Spring Boot, REST APIs
-
-**AI/ML**
-Python, FastAPI, Scikit-learn
-
-**Database**
-Neon PostgreSQL
-
-**DevOps**
-Docker, GitHub Actions, Vercel, Render
+| Layer | Platform |
+|---|---|
+| Frontend | Vercel |
+| Backend | Render |
+| ML Service | Render |
+| Database | Neon PostgreSQL |
+| CI/CD | GitHub Actions |
 
 ---
 
-# 📂 Repository Structure
+# 🧱 Tech Stack  
 
-```
-gigasur​e
-
-frontend/
-backend/
-ml-service/
-docs/
-
-README.md
-```
+Frontend: React, Vite, Tailwind  
+Backend: Spring Boot  
+ML: Python, FastAPI, Scikit-learn  
+Database: PostgreSQL (Neon)  
+DevOps: Docker, GitHub Actions  
 
 ---
 
-# 🔄 Data Flow
+# 🔄 Data Flow  
 
-1. User submits insurance data
-2. Backend processes request
-3. ML service calculates risk score
-4. Parametric engine checks triggers
-5. Claim auto-generated
-6. Payout calculated and returned
-
----
-
-# 🚧 Challenges Faced
-
-* 🔗 Microservice communication latency
-* ☁️ Multi-cloud deployment (Vercel + Render + Neon)
-* 🐳 Docker networking issues
-* 🔐 Secure environment configuration
-* ⚡ Real-time inference optimization
+1. User submits data  
+2. Backend calls ML service  
+3. Risk score generated  
+4. Trigger conditions checked  
+5. Claim auto-created  
+6. Payout calculated  
 
 ---
 
-# 🌍 Impact
+# 🚧 Challenges  
 
-GigaSure creates a **financial safety net for gig workers**:
-
-* Prevents sudden income shocks
-* Enables instant insurance payouts
-* Uses AI for fair pricing
-* Scales across cities globally
+- Multi-cloud deployment  
+- Docker networking  
+- Real-time ML inference  
+- Secure environment configs  
 
 ---
 
-# 🔗 Live Demo
+# 🌍 Impact  
 
-👉 https://gigasure.vercel.app/auth
-
----
-
-# 💻 GitHub Repository
-
-👉 https://github.com/your-username/gigasure
+- Protects gig workers financially  
+- Enables instant insurance payouts  
+- Scalable across cities  
 
 ---
 
-# 🎥 Demo Video
+# 🔗 Live Demo  
 
-👉 https://youtube.com/your-demo-video
+https://gigasure.vercel.app/auth 
 
 ---
 
-# 🚀 Future Scope
+# 💻 GitHub  
 
-* Mobile app (React Native)
-* Blockchain-based claim transparency
-* Integration with Swiggy/Zomato APIs
-* Real payment gateway integration
-* Advanced deep learning risk models
+https://github.com/your-username/gigasure  
+
+---
+
+# 🎥 Demo Video  
+
+https://youtube.com/your-demo-video  
+
+---
+
+# 🚀 Future Scope  
+
+- Mobile app  
+- Blockchain claims  
+- Real payment integration  
+- Advanced AI models  
