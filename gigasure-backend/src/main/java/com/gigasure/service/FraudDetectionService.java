@@ -60,7 +60,7 @@ public class FraudDetectionService {
 
     private long behavioralAnalysis(Worker worker, List<String> reasons) {
         LocalDateTime twoWeeksAgo = LocalDateTime.now().minusDays(14);
-        long count = claimRepository.findByPolicyWorkerId(worker.getId()).stream()
+        long count = claimRepository.findByPolicy_Worker_Id(worker.getId()).stream()
                 .filter(c -> c.getClaimDate() != null && c.getClaimDate().isAfter(twoWeeksAgo))
                 .count();
         if (count >= 3) reasons.add("Behavioral: Claim frequency exceeded ( > 2 in 14 days)");
