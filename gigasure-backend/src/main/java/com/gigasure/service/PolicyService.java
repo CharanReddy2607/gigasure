@@ -34,4 +34,8 @@ public class PolicyService {
     public List<Policy> getAllPolicies() {
         return policyRepository.findAll();
     }
+
+    public void deletePolicy(Long id) {
+        policyRepository.deleteById(id);
+    }
 }

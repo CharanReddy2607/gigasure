@@ -27,7 +27,7 @@ public class Policy {
     private String name;
     private BigDecimal coverageAmount;
     private BigDecimal weeklyPremium;
-    private boolean active;
+    private Boolean active;
     
     private LocalDateTime startDate;
     private LocalDateTime endDate;

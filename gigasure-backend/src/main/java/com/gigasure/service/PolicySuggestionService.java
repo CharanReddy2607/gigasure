@@ -23,7 +23,7 @@ public class PolicySuggestionService {
         List<Policy> allPolicies = policyRepository.findAll();
 
         for (Policy policy : allPolicies) {
-            if (policy.isActive() && policy.getWorker().getCity().equalsIgnoreCase(city)) {
+            if (Boolean.TRUE.equals(policy.getActive()) && policy.getWorker().getCity().equalsIgnoreCase(city)) {
                 // If heavy rainfall is hitting, expect around 1.5 days of severe lost wages
                 BigDecimal estimatedLoss = policy.getWorker().getDailyIncome().multiply(BigDecimal.valueOf(1.5));
 

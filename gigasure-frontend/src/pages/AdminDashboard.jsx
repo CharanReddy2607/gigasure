@@ -13,7 +13,7 @@ function AdminDashboard() {
     const [policies, setPolicies] = useState([]);
     const [claims, setClaims] = useState([]);
     const [fraudLogs, setFraudLogs] = useState([]);
-    const [disruption, setDisruption] = useState({ type: 'RAINFALL', value: '', city: 'Mumbai', deliveryActivityDrop: '' });
+    const [disruption, setDisruption] = useState({ type: 'RAINFALL', metricValue: '', city: 'Mumbai', deliveryActivityDrop: '' });
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -48,7 +48,9 @@ function AdminDashboard() {
             alert("Parametric Event Authorized! System processing claims...");
             fetchData();
         }).catch(err => {
-            alert("Authorization Failed");
+            console.error("Disruption Trigger Error:", err);
+            const errorMsg = err.response?.data?.message || err.message || "Unknown error";
+            alert(`System Processing Error: ${errorMsg}\nPlease check backend logs for details.`);
         });
     };
 
@@ -131,7 +133,7 @@ function AdminDashboard() {
                                 </div>
                                 <div className="col-md-6">
                                     <label className="form-label small fw-bold opacity-50">METRIC VALUE</label>
-                                    <input type="number" step="0.1" className="form-control border-0 bg-light py-3 rounded-4" placeholder="Value (e.g. 45.0)" value={disruption.value} onChange={e => setDisruption({ ...disruption, value: e.target.value })} required />
+                                    <input type="number" step="0.1" className="form-control border-0 bg-light py-3 rounded-4" placeholder="Value (e.g. 45.0)" value={disruption.metricValue} onChange={e => setDisruption({ ...disruption, metricValue: e.target.value })} required />
                                 </div>
                                 <div className="col-md-6">
                                     <label className="form-label small fw-bold opacity-50">TARGET CITY</label>
@@ -247,13 +249,23 @@ function AdminDashboard() {
                                     </div>
                                 </div>
 
-                                <div className="mt-auto d-flex justify-content-between align-items-center pt-3 border-top border-light">
-                                    <div className="small text-muted">
-                                        <TrendingUp size={12} className="me-1" /> 
-                                        Trust Index: <span className="fw-bold text-dark">{(100 - (w.currentRiskScore || 0)*10).toFixed(1)}%</span>
+                                <div className="mt-auto d-flex flex-column gap-2 pt-3 border-top border-light">
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="small text-muted">
+                                            <TrendingUp size={12} className="me-1" /> 
+                                            Trust Index: <span className="fw-bold text-dark">{(100 - (w.currentRiskScore || 0)*10).toFixed(1)}%</span>
+                                        </div>
+                                        <div className="small text-muted">
+                                            Safety: <span className="fw-bold text-primary">{w.safetyRating || '4.5'}/5</span>
+                                        </div>
                                     </div>
-                                    <div className="small opacity-50" style={{ fontSize: '0.65rem' }}>
-                                        Lat: {w.currentLat?.toFixed(3)}, Lng: {w.currentLng?.toFixed(3)}
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <div className="small text-muted">
+                                            Delivery Freq: <span className="fw-bold">{(w.deliveryFrequency * 100).toFixed(0)}%</span>
+                                        </div>
+                                        <div className="small opacity-50" style={{ fontSize: '0.65rem' }}>
+                                            GPS Cluster: {w.currentLat?.toFixed(2)}, {w.currentLng?.toFixed(2)}
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>

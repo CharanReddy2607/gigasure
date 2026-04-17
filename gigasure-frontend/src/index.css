@@ -203,3 +203,115 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
 }
+
+.notification-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  margin-top: 1.2rem;
+  padding: 1.2rem;
+  z-index: 2000;
+  transform-origin: top right;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 0.8rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  background: white;
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background: #f8fafc;
+  border-color: var(--primary);
+}
+
+.notification-item-message {
+  font-size: 0.8rem;
+  color: #1e293b;
+  margin-bottom: 0.2rem;
+}
+
+.notification-item-time {
+  font-size: 0.6rem;
+  color: #94a3b8;
+}
+
+/* Razorpay Mock Styles */
+.razorpay-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 5000;
+}
+
+.razorpay-modal {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: razorpayIn 0.4s ease-out;
+}
+
+@keyframes razorpayIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.razorpay-header {
+    background: #23222e; /* Original Razorpay Dark Theme */
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    color: white;
+}
+
+.razorpay-content {
+    min-height: 480px;
+}
+
+.grayscale {
+    filter: grayscale(1);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.extra-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.vibrant-bg {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+}
+
+.dashed-border {
+    border-style: dashed !important;
+}

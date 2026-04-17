@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Check, Info, AlertTriangle, TrendingUp, Zap, Clock, ShieldCheck } from 'lucide-react';
+import { Modal, Button, Spinner } from 'react-bootstrap';
+import RazorpayMock from '../components/RazorpayMock';
+import { 
+    Shield, Check, Info, AlertTriangle, TrendingUp, 
+    Zap, Clock, ShieldCheck, QrCode, CreditCard, 
+    Smartphone, ArrowRight, Loader2, RefreshCw
+} from 'lucide-react';
 
 function PolicyPage() {
     const [purchasing, setPurchasing] = useState(null);
     const [success, setSuccess] = useState(false);
+    const [showRazorpay, setShowRazorpay] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState(null);
 
     const WORKER_ID = 1;
 
@@ -62,20 +70,26 @@ function PolicyPage() {
         }
     ];
 
-    const handlePurchase = async (plan) => {
-        setPurchasing(plan.id);
+    const handleInitiatePurchase = (plan) => {
+        setSelectedPlan(plan);
+        setShowRazorpay(true);
+    };
+
+    const handlePaymentSuccess = async () => {
+        setPurchasing(selectedPlan.id);
         try {
             await api.post('/policies', {
-                name: plan.name,
-                weeklyPremium: plan.premium,
-                coverageAmount: plan.coverage,
+                name: selectedPlan.name,
+                weeklyPremium: selectedPlan.premium,
+                coverageAmount: selectedPlan.coverage,
+                active: true,
                 worker: { id: WORKER_ID }
             });
             setSuccess(true);
-            setTimeout(() => setSuccess(false), 3000);
+            setTimeout(() => setSuccess(false), 5000);
         } catch (err) {
             console.error(err);
-            alert("Error connecting to GigaSure safe. Try again later.");
+            alert("Error activating GigaSure shield. Please contact support.");
         } finally {
             setPurchasing(null);
         }
@@ -84,18 +98,19 @@ function PolicyPage() {
     return (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-5 text-center">
-                <h1 className="dashboard-header mb-2">Policy Marketplace</h1>
-                <p className="text-muted fs-5">Select a paramatric shield tailored for your gig mobility needs.</p>
+                <h1 className="dashboard-header mb-2 text-gradient">Policy Marketplace</h1>
+                <p className="text-muted fs-5">Select a parametric shield tailored for your gig mobility needs.</p>
             </div>
 
             <AnimatePresence>
                 {success && (
                     <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        className="alert alert-success glass-panel text-center fw-bold mb-4 border-0 shadow-lg"
+                        className="alert alert-success glass-panel text-center fw-bold mb-5 border-0 shadow-lg py-4"
                     >
+                        <ShieldCheck className="me-2 text-success" size={24} />
                         Success! Policy activated and synced with your Shield Dashboard.
                     </motion.div>
                 )}
@@ -138,16 +153,27 @@ function PolicyPage() {
                             </div>
                             <button 
                                 className={`btn w-100 py-3 rounded-pill fw-bold transition-all ${purchasing === plan.id ? 'btn-secondary opacity-50' : 'btn-primary'}`}
-                                onClick={() => handlePurchase(plan)}
+                                onClick={() => handleInitiatePurchase(plan)}
                                 disabled={purchasing !== null}
                                 style={{ backgroundColor: plan.color, borderColor: plan.color }}
                             >
-                                {purchasing === plan.id ? 'Activating Shield...' : 'Confirm Activation'}
+                                {purchasing === plan.id ? 'Connecting...' : 'Confirm Activation'}
                             </button>
                         </div>
                     </motion.div>
                 ))}
             </div>
+
+            {/* Automated Razorpay Mock Checkout */}
+            {selectedPlan && (
+                <RazorpayMock 
+                    show={showRazorpay}
+                    onClose={() => setShowRazorpay(false)}
+                    onPaymentSuccess={handlePaymentSuccess}
+                    amount={selectedPlan.premium}
+                    planName={selectedPlan.name}
+                />
+            )}
 
             <div className="mt-5 p-5 glass-panel text-center bg-primary bg-opacity-5">
                 <div className="d-flex justify-content-center gap-3 mb-3 text-primary">
@@ -166,3 +192,4 @@ function PolicyPage() {
 }
 
 export default PolicyPage;
+

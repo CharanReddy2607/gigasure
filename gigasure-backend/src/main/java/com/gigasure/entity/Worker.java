@@ -26,8 +26,14 @@ public class Worker {
     private BigDecimal dailyIncome;
     private Double currentRiskScore;
     private String contactEmail;
+    private String phoneNumber;
 
     private Double currentLat;
     private Double currentLng;
     private java.time.LocalDateTime lastLocationUpdate;
+
+    // Behavioral Analysis Fields
+    private Double safetyRating; // 1.0 to 5.0
+    private Double deliveryFrequency; // 0.0 to 1.0
+    private Integer totalDeliveriesCompleted;
 }

@@ -26,4 +26,9 @@ public class ClaimController {
     public List<Claim> getWorkerClaims(@PathVariable Long workerId) {
         return claimService.getClaimsByWorker(workerId);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteClaim(@PathVariable Long id) {
+        claimService.deleteClaim(id);
+    }
 }

@@ -32,3 +32,11 @@ data/
 # OS
 .DS_Store
 Thumbs.db
+
+gigasure-backend-v2/
+*.log
+*.joblib
+target/
+node_modules/
+__pycache__/
+.env

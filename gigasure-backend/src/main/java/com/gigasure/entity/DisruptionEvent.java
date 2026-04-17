@@ -18,7 +18,7 @@ public class DisruptionEvent {
     private Long id;
 
     private String type; // RAINFALL, HEATWAVE, AQI
-    private Double value; // e.g. 40.5 (mm), 42 (C)
+    private Double metricValue; // e.g. 40.5 (mm), 42 (C)
     private String city;
     private Double deliveryActivityDrop; // Percentage drop e.g. 55.0 for 55%
     

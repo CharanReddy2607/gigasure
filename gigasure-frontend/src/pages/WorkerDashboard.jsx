@@ -9,6 +9,7 @@ function WorkerDashboard() {
     const [notifications, setNotifications] = useState([]);
     const [claims, setClaims] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showNotifications, setShowNotifications] = useState(false);
 
     const WORKER_ID = 1;
 
@@ -63,11 +64,42 @@ function WorkerDashboard() {
                     <h2 className="dashboard-header mb-0">Hi, {worker.name.split(' ')[0]}</h2>
                     <p className="text-muted"><MapPin size={14} className="me-1" />{worker.city} • {worker.platform} Partner</p>
                 </div>
-                <div className="d-flex gap-3">
-                    <div className="notification-bell">
+                <div className="d-flex gap-3 position-relative">
+                    <div className="notification-bell" onClick={() => setShowNotifications(!showNotifications)}>
                         <Bell size={20} className="text-primary" />
                         {notifications.length > 0 && <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.6rem' }}>{notifications.length}</span>}
                     </div>
+
+                    <AnimatePresence>
+                        {showNotifications && (
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                                className="notification-menu shadow-lg"
+                            >
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 className="fw-bold m-0">GigaSure Alerts</h6>
+                                    <span className="badge bg-primary bg-opacity-10 text-primary rounded-pill small">
+                                        {notifications.length} New
+                                    </span>
+                                </div>
+                                {notifications.length > 0 ? (
+                                    notifications.map(n => (
+                                        <div key={n.id} className="notification-item">
+                                            <div className="notification-item-message">{n.message}</div>
+                                            <div className="notification-item-time">{new Date(n.createdAt).toLocaleString()}</div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="text-center py-4 text-muted small">
+                                        All clear! No alerts today.
+                                    </div>
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
                     <div className="glass-panel px-3 py-2 d-flex align-items-center gap-2">
                         <div className="vibrant-gradient rounded-circle p-1"><User size={16} /></div>
                         <span className="small fw-bold">{worker.name}</span>
@@ -82,17 +114,18 @@ function WorkerDashboard() {
                         whileHover={{ y: -5 }}
                         className="glass-panel p-4 vibrant-gradient mb-4 overflow-hidden position-relative shadow-lg"
                     >
-                        <div className="position-relative z-1">
+                        <div className="position-relative z-1 text-white">
                             <div className="small opacity-75 fw-bold text-uppercase mb-1">Average Daily Income</div>
                             <div className="display-5 fw-bold mb-4">₹{worker.dailyIncome}</div>
                             
-                            <div className="d-flex justify-content-between align-items-end">
-                                <div>
-                                    <div className="small opacity-75 fw-bold text-uppercase">Trust Index</div>
+                            <div className="row g-2">
+                                <div className="col-6 border-end border-white border-opacity-25">
+                                    <div className="small opacity-75 fw-bold text-uppercase" style={{fontSize: '0.6rem'}}>Trust Index</div>
                                     <div className="h4 fw-bold mb-0">{(100 - (worker.currentRiskScore || 0) * 10).toFixed(1)}%</div>
                                 </div>
-                                <div className="text-end">
-                                    <Activity size={32} className="opacity-50" />
+                                <div className="col-6 ps-3">
+                                    <div className="small opacity-75 fw-bold text-uppercase" style={{fontSize: '0.6rem'}}>Safety Rating</div>
+                                    <div className="h4 fw-bold mb-0">{worker.safetyRating || '4.5'}/5</div>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +133,33 @@ function WorkerDashboard() {
                             <Shield size={200} />
                         </div>
                     </motion.div>
+
+                    {/* Behavioral Insights */}
+                    <div className="glass-panel p-4 mb-4">
+                        <div className="d-flex align-items-center justify-content-between mb-3">
+                            <h5 className="m-0 fw-bold">Behavioral Insights</h5>
+                            <TrendingUp size={18} className="text-success" />
+                        </div>
+                        <div className="space-y-3">
+                            <div className="mb-3">
+                                <div className="d-flex justify-content-between small mb-1">
+                                    <span className="text-muted">Delivery Reliability</span>
+                                    <span className="fw-bold">{(worker.deliveryFrequency * 100).toFixed(0)}%</span>
+                                </div>
+                                <div className="progress rounded-pill" style={{height: '6px'}}>
+                                    <div className="progress-bar bg-primary" style={{width: `${worker.deliveryFrequency * 100}%`}}></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="small text-muted mb-2">Benefit from conduct:</div>
+                                <div className="p-2 bg-success bg-opacity-10 border border-success border-opacity-25 rounded-3">
+                                    <div className="small text-success fw-bold d-flex align-items-center gap-1">
+                                        <TrendingUp size={12}/> +10% High Conduct Payout Bonus
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="glass-panel p-4 mb-4">
                         <div className="d-flex align-items-center mb-3">

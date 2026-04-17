@@ -1,0 +1,6 @@
+distance_from_base
+claim_amount
+historical_claims_count
+worker_safety_score
+delivery_frequency
+ip_anomaly_score

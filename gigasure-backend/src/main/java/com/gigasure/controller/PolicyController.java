@@ -36,4 +36,9 @@ public class PolicyController {
     public List<Policy> getAllPolicies() {
         return policyService.getAllPolicies();
     }
+
+    @DeleteMapping("/{id}")
+    public void deletePolicy(@PathVariable Long id) {
+        policyService.deletePolicy(id);
+    }
 }
