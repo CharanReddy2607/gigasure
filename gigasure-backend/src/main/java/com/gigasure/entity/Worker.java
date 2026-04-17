@@ -1,5 +1,6 @@
 package com.gigasure.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,6 +31,7 @@ public class Worker {
 
     private Double currentLat;
     private Double currentLng;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private java.time.LocalDateTime lastLocationUpdate;
 
     // Behavioral Analysis Fields
