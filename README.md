@@ -199,7 +199,9 @@ https://github.com/CharanReddy2607/gigasure.git
 
 # 🎥 Demo Video  
 
-https://youtube.com/your-demo-video  
+https://youtu.be/RJGFyNyZcas
+
+# Admin Hub Password - admin123
 
 ---
 
