@@ -193,7 +193,7 @@ https://gigasure.vercel.app/auth
 
 # 💻 GitHub  
 
-https://github.com/your-username/gigasure  
+https://github.com/CharanReddy2607/gigasure.git  
 
 ---
 
