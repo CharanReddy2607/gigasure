@@ -3,11 +3,11 @@ import api from '../services/api';
 import { motion } from 'framer-motion';
 import { Shield, Activity, Bell, FileText, CheckCircle, AlertCircle, TrendingUp, HandCoins, ExternalLink } from 'lucide-react';
 
-function ClaimsPage() {
+function ClaimsPage({ user }) {
     const [claims, setClaims] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const WORKER_ID = 1;
+    const WORKER_ID = user?.id || 1;
 
     useEffect(() => {
         const fetchClaims = async () => {

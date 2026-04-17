@@ -9,13 +9,13 @@ import {
     Smartphone, ArrowRight, Loader2, RefreshCw
 } from 'lucide-react';
 
-function PolicyPage() {
+function PolicyPage({ user }) {
     const [purchasing, setPurchasing] = useState(null);
     const [success, setSuccess] = useState(false);
     const [showRazorpay, setShowRazorpay] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState(null);
 
-    const WORKER_ID = 1;
+    const WORKER_ID = user?.id || 1;
 
     const ALL_PLANS = [
         { 

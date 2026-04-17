@@ -137,10 +137,10 @@ function App() {
 
             <div className="container-fluid py-4 px-5 flex-grow-1">
               <Routes>
-                <Route path="/" element={<WorkerDashboard />} /> 
+                <Route path="/" element={<WorkerDashboard user={user} />} /> 
                 <Route path="/admin" element={<AdminGuard><AdminDashboard /></AdminGuard>} /> 
-                <Route path="/policies" element={<PolicyPage />} />
-                <Route path="/claims" element={<ClaimsPage />} />
+                <Route path="/policies" element={<PolicyPage user={user} />} />
+                <Route path="/claims" element={<ClaimsPage user={user} />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Routes>
             </div>

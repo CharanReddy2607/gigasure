@@ -3,7 +3,7 @@ import api from '../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, User, Activity, Bell, FileText, CheckCircle, AlertCircle, MapPin, TrendingUp, CloudRain } from 'lucide-react';
 
-function WorkerDashboard() {
+function WorkerDashboard({ user }) {
     const [worker, setWorker] = useState(null);
     const [policies, setPolicies] = useState([]);
     const [notifications, setNotifications] = useState([]);
@@ -11,7 +11,7 @@ function WorkerDashboard() {
     const [loading, setLoading] = useState(true);
     const [showNotifications, setShowNotifications] = useState(false);
 
-    const WORKER_ID = 1;
+    const WORKER_ID = user?.id || 1;
 
     const getPlanColor = (name) => {
         const colors = {
