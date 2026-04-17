@@ -3,7 +3,7 @@ package com.gigasure.controller;
 import com.gigasure.entity.Worker;
 import com.gigasure.repository.WorkerRepository;
 import com.gigasure.service.OtpService;
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
+@Slf4j
 public class AuthController {
 
     private final OtpService otpService;
@@ -27,7 +27,11 @@ public class AuthController {
     @PostMapping("/otp/send")
     public ResponseEntity<?> sendOtp(@RequestBody Map<String, String> request) {
         String phoneNumber = request.get("phoneNumber");
+        log.info(">>> AUTH: Received OTP request for phone: {}", phoneNumber);
+        
         String otp = otpService.generateOtp(phoneNumber);
+        log.info(">>> AUTH: Generated OTP [{}] for {}", otp, phoneNumber);
+        
         return ResponseEntity.ok(Map.of("message", "OTP sent", "otp", otp));
     }
 
@@ -35,8 +39,10 @@ public class AuthController {
     public ResponseEntity<?> verifyOtp(@RequestBody Map<String, String> request) {
         String phoneNumber = request.get("phoneNumber");
         String otp = request.get("otp");
+        log.info(">>> AUTH: Verification attempt for {}: OTP={}", phoneNumber, otp);
 
         if (otpService.validateOtp(phoneNumber, otp)) {
+            log.info(">>> AUTH: Successful verification for {}", phoneNumber);
             Optional<Worker> workerOpt = workerRepository.findByPhoneNumber(phoneNumber);
             Worker worker;
             if (workerOpt.isPresent()) {
