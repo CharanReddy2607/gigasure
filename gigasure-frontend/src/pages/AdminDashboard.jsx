@@ -20,11 +20,11 @@ function AdminDashboard() {
     const fetchData = async () => {
         try {
             const [statsRes, fraudRes, workersRes, policiesRes, claimsRes] = await Promise.all([
-                api.get('/dashboard/stats'),
-                api.get('/dashboard/fraud'),
-                api.get('/workers'),
-                api.get('/policies'), // Ensure this endpoint exists or fetch per worker
-                api.get('/claims')
+                api.get('dashboard/stats'),
+                api.get('dashboard/fraud'),
+                api.get('workers'),
+                api.get('policies'), // Ensure this endpoint exists or fetch per worker
+                api.get('claims')
             ]);
             setStats(statsRes.data);
             setFraudLogs(fraudRes.data);
@@ -44,7 +44,7 @@ function AdminDashboard() {
 
     const triggerEvent = (e) => {
         e.preventDefault();
-        api.post('/disruptions', disruption).then(res => {
+        api.post('disruptions', disruption).then(res => {
             alert("Parametric Event Authorized! System processing claims...");
             fetchData();
         }).catch(err => {

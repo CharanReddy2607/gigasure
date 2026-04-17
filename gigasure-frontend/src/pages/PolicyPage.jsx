@@ -78,7 +78,7 @@ function PolicyPage() {
     const handlePaymentSuccess = async () => {
         setPurchasing(selectedPlan.id);
         try {
-            await api.post('/policies', {
+            await api.post('policies', {
                 name: selectedPlan.name,
                 weeklyPremium: selectedPlan.premium,
                 coverageAmount: selectedPlan.coverage,

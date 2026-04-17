@@ -27,10 +27,10 @@ function WorkerDashboard() {
     const fetchData = async () => {
         try {
             const [workerRes, policiesRes, notifRes, claimsRes] = await Promise.all([
-                api.get(`/workers/${WORKER_ID}`),
-                api.get(`/policies/worker/${WORKER_ID}`),
-                api.get(`/notifications/worker/${WORKER_ID}`),
-                api.get(`/claims/worker/${WORKER_ID}`)
+                api.get(`workers/${WORKER_ID}`),
+                api.get(`policies/worker/${WORKER_ID}`),
+                api.get(`notifications/worker/${WORKER_ID}`),
+                api.get(`claims/worker/${WORKER_ID}`)
             ]);
             setWorker(workerRes.data);
             setPolicies(policiesRes.data);

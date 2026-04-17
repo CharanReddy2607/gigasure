@@ -26,7 +26,7 @@ function AuthPage({ onLoginSuccess }) {
 
     const handleSendOtp = async (e) => {
         e.preventDefault();
-        if (phoneNumber.length < 10) {
+        if (phoneNumber.length < 9) {
             setError('Please enter a valid phone number');
             return;
         }
@@ -34,7 +34,7 @@ function AuthPage({ onLoginSuccess }) {
         setLoading(true);
         setError('');
         try {
-            const res = await api.post('/auth/otp/send', { phoneNumber });
+            const res = await api.post('auth/otp/send', { phoneNumber });
             setStep('otp');
             setTimer(30);
             // In our demo, we show the OTP in a toast or console
@@ -74,7 +74,7 @@ function AuthPage({ onLoginSuccess }) {
         setLoading(true);
         setError('');
         try {
-            const res = await api.post('/auth/otp/verify', { 
+            const res = await api.post('auth/otp/verify', { 
                 phoneNumber, 
                 otp: fullOtp 
             });

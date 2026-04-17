@@ -12,7 +12,7 @@ function ClaimsPage() {
     useEffect(() => {
         const fetchClaims = async () => {
             try {
-                const res = await api.get(`/claims/worker/${WORKER_ID}`);
+                const res = await api.get(`claims/worker/${WORKER_ID}`);
                 setClaims(res.data);
             } catch (err) {
                 console.error(err);
